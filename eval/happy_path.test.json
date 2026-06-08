@@ -1,0 +1,67 @@
+{
+  "eval_set_id": "anukriti_pgx_happy_path",
+  "name": "Happy path — well-evidenced PGx checks",
+  "description": "Easy cases. A well-evidenced (drug, population) pair where both the baseline and optimized agents are expected to ground in the tool and answer correctly. These exist to show the optimization does NOT regress the easy cases.",
+  "eval_cases": [
+    {
+      "eval_id": "eur_clopidogrel_normal",
+      "conversation": [
+        {
+          "invocation_id": "hp-001",
+          "user_content": {
+            "parts": [
+              { "text": "My father is European and his cardiologist wants to start clopidogrel after a stent. Is that okay for his genetics?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "I checked clopidogrel against European (CYP2C19) evidence. The result is R12 (sufficient): *1/*1 Normal Metabolizer, standard clopidogrel response expected, citing CPIC 2022 (PMID:35034351). Always confirm with a healthcare professional before making any prescription decisions." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "name": "check_pgx_safety",
+                "args": { "drug": "clopidogrel", "ancestry": "EUR", "context": "prescription_review" }
+              }
+            ],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": { "app_name": "anukriti_adk", "user_id": "judge", "state": {} }
+    },
+    {
+      "eval_id": "eur_warfarin_normal",
+      "conversation": [
+        {
+          "invocation_id": "hp-002",
+          "user_content": {
+            "parts": [
+              { "text": "Is standard warfarin dosing fine for a European patient?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "Running the warfarin check for European ancestry returned R12 (sufficient): CYP2C9 *1/*1, VKORC1 -1639 GG, standard dosing band per CPIC/IWPC (PMID:28198005). Always confirm with a healthcare professional before making any prescription decisions." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "name": "check_pgx_safety",
+                "args": { "drug": "warfarin", "ancestry": "EUR", "context": "prescription_review" }
+              }
+            ],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": { "app_name": "anukriti_adk", "user_id": "judge", "state": {} }
+    }
+  ]
+}

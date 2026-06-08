@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets / config
+.env
+*.env
+!.env.example
+
+# ADK / eval scratch
+.adk/
+eval_history/
+*.local.json
+
+# OS
+.DS_Store
