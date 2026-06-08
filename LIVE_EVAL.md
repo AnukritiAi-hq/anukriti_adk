@@ -32,6 +32,7 @@ confirmation, not the claim.
 ```bash
 cd anukriti-adk
 source .venv/bin/activate
+pip install "google-adk[eval]"     # one-time: pandas/tabulate/etc. for the metrics
 export GOOGLE_API_KEY=...          # from https://aistudio.google.com/apikey
 python -m harness.run_optimization --live
 # writes LIVE_EVAL_RESULTS.md (pass/fail per eval file)

@@ -29,6 +29,8 @@ and *"Is aspirin safe for them?"* (the second must refuse to guess).
 ## 3. Run the real ADK eval against Gemini (confirmation of the simulated result)
 
 ```bash
+pip install "google-adk[eval]"   # one-time: metric deps (pandas/tabulate/…)
+
 adk eval anukriti_adk eval/edge_cases.test.json \
     --config_file_path eval/test_config.json --print_detailed_results
 

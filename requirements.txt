@@ -15,3 +15,9 @@ uvicorn>=0.29.0
 pytest>=8.2.0
 pytest-asyncio>=0.23.0
 httpx>=0.27.0
+
+# Live ADK eval (`python -m harness.run_optimization --live`) needs ADK's eval
+# extra (pandas/tabulate/rouge-score etc. drive the metric evaluators for
+# tool_trajectory_avg_score + hallucinations_v1). The offline harness + the
+# Cloud Run testing surface do NOT need this.
+#   pip install "google-adk[eval]"
