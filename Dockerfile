@@ -27,7 +27,7 @@ EXPOSE 8080
 
 # Cloud Run sets $PORT; default to 8080 locally.
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
-    CMD python -c "import urllib.request,os; urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\",\"8080\")}/healthz')" || exit 1
+    CMD python -c "import urllib.request,os; urllib.request.urlopen(f'http://127.0.0.1:{os.environ.get(\"PORT\",\"8080\")}/livez')" || exit 1
 
 # Serve the authenticated testing surface. Set ANUKRITI_API_KEY at deploy time.
 CMD ["sh", "-c", "uvicorn anukriti_adk.serve:app --host 0.0.0.0 --port ${PORT:-8080}"]

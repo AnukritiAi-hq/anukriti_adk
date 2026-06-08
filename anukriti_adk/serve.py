@@ -105,7 +105,11 @@ class GuardRequest(BaseModel):
 
 
 @app.get("/healthz")
+@app.get("/livez")
 def healthz() -> dict:
+    # Note: Cloud Run reserves/intercepts some probe paths (e.g. /healthz can be
+    # swallowed by the platform frontend). /livez is provided as a path that
+    # always reaches the app; both return the same payload locally.
     return {"status": "ok"}
 
 
@@ -123,7 +127,8 @@ def root() -> dict:
             "NO-AUTH local mode" if ALLOW_NOAUTH else "MISCONFIGURED (no key set)"
         ),
         "endpoints": {
-            "GET /healthz": "liveness",
+            "GET /livez": "liveness (use this on Cloud Run)",
+            "GET /healthz": "liveness (local)",
             "POST /v1/check": "run a PGx safety check",
             "POST /v1/guard": "see the guardrail rewrite an unsafe draft",
             "GET /v1/workflows": "list supported drugs",

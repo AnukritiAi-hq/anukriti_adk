@@ -103,8 +103,10 @@ We treated reliability as an engineering discipline, not prompt vibes:
 
 - **Code:** this repo. `pip install -r requirements.txt && pytest` (offline, ~2s).
 - **Reproduce the result:** `python -m harness.run_optimization`.
-- **Testing access:** the Cloud Run URL (see DEPLOYMENT.md) — call `/v1/guard`
-  with the provided `X-API-Key`.
+- **Testing access:** live on Cloud Run at
+  `https://anukriti-adk-l6ztkkgjqa-uc.a.run.app` — call `POST /v1/guard` with the
+  `X-API-Key` provided in the Devpost submission (see DEPLOYMENT.md). `GET /` and
+  `GET /livez` are open (no auth).
 - **Talk to it:** `adk web .` with a free Gemini key.
 
 > Demo only. Not for clinical use. Never enter real PHI. The engine is positioned

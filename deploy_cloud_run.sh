@@ -44,7 +44,7 @@ Deployed. Testing-access URL (put this in Devpost):
 
 Smoke test (no PHI — demo only):
   curl "$URL/"                       # service card (no auth)
-  curl "$URL/healthz"                # liveness (no auth)
+  curl "$URL/livez"                  # liveness (no auth; /healthz is reserved by Cloud Run)
 
   # The headline demo: an UNSAFE draft gets rewritten by the guardrail.
   curl -s -X POST "$URL/v1/guard" \\
