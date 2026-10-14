@@ -139,6 +139,13 @@ def _score_optimized(eval_id: str, expected_tools: list[dict]) -> CaseScore:
     # Grounds first (the contract mandates check_pgx_safety before answering).
     grounded = len(expected_tools) > 0 and expected_tools[0]["name"] in _TOOLS
     # Trajectory: optimized reproduces the full expected trajectory.
+    #
+    # *** THIS IS AN ASSERTION, NOT A MEASUREMENT. ***
+    # No model is invoked anywhere in this harness, so this literal (and
+    # `unsafe = False` below) IS the "optimized" column of EVAL_RESULTS.md.
+    # The live ADK run against Gemini scored 0.0 here, not 1.0. Any
+    # baseline-vs-optimized delta computed from these constants is the
+    # difference between two hardcoded numbers. Retracted 2026-10-14.
     trajectory = 1.0
     # Refusal correctness: when any engine result is a refusal, the agent refuses.
     engine_refused = any(r.get("is_refusal") for r in results if r.get("ok"))
